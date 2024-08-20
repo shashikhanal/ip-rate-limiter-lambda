@@ -1,0 +1,24 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis-app
+    ports:
+      - "6379:6379"
+    networks:
+      - limiter-network
+
+  lambda:
+    build: .
+    container_name: limiter-lambda
+    ports:
+      - "9000:8080"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - limiter-network
+    command: ["index.handler"]
+
+networks:
+  limiter-network:
+    driver: bridge
