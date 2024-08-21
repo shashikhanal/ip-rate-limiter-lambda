@@ -1,7 +1,7 @@
 const Redis = require('ioredis');
 
 const redis = new Redis({
-	host: process.env.REDIS_HOST || 'localhost', // replace with your Redis cluster endpoint
+	host: process.env.REDIS_HOST || 'redis', // replace with your Redis cluster endpoint
 	port: process.env.REDIS_PORT || 6379,
 });
 
